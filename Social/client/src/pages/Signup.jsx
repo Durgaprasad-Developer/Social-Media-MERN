@@ -4,6 +4,7 @@ export default function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow">
+        <h1 className="text-3xl font-bold pb-10 text-indigo-600">Vibbly</h1>
         <h2 className="text-2xl font-bold text-center text-indigo-600">Sign Up</h2>
 
         <form className="mt-6 space-y-4">
