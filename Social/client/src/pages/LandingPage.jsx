@@ -35,7 +35,7 @@ export default function LandingPage() {
         </div>
         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
           <img
-            src="https://illustrations.popsy.co/gray/group-chat.svg"
+            src="/src/assets/landingpage_demo.png"
             alt="Vibbly app preview"
             className="w-80 md:w-[400px]"
           />

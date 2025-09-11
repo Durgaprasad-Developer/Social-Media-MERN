@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 export default function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
+        <div className="md:w-1/3 shadow-blue-600 md:mt-0 flex justify-center">
+          <img
+            src="/src/assets/landingpage_demo.png"
+            alt="Vibbly app preview"
+            className="w-80 md:w-[400px]"
+          />
+        </div>
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow">
         <h1 className="text-3xl font-bold pb-10 text-indigo-600">Vibbly</h1>
         <h2 className="text-2xl font-bold text-center text-indigo-600">Sign Up</h2>
