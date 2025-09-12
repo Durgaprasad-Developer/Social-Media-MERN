@@ -1,33 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { signUp } from "../../apiCalls/authCalls";
 
 export default function Signup() {
-  const [fullName, setFullName] = useState("");
-  const [userId, setUserId] = useState("");
+  const [name, setname] = useState("");
+  const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
 
-    const data = { fullName, userId, email, password };
-
-    try {
-      const response = await fetch("http://localhost:5000/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include", // if backend uses cookies/jwt
-      });
-
-      const result = await response.json();
-      console.log("Signup response:", result);
+  const handleSubmit = async (e) =>{
+    try{
+      e.preventDefault();
+    const data = await signUp({name, userName, email, password});
+   console.log("Server response:", data);
+   if(data){
+    localStorage.setItem("authToken", data.token);
+    navigate('/home');
+   }else{
+    alert(data?.message || "Signup failed");
+   }
     } catch (err) {
-      console.error("Error during signup:", err);
-    }
-  };
+  console.error("Error during sign up:", err);
+  console.error("Server response:", err.response?.data); // <- this shows actual backend message
+}
+
+    
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
@@ -46,15 +46,15 @@ export default function Signup() {
           <input
             type="text"
             placeholder="Full Name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            value={name}
+            onChange={(e) => setname(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
           />
           <input
             type="text"
             placeholder="User ID"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            value={userName}
+            onChange={(e) => setuserName(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-indigo-300"
           />
           <input

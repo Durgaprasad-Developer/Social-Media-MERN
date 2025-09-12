@@ -1,29 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { signIn } from "../../apiCalls/authCalls";
 
 export default function Signin() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare data
-    const data = { userName, password };
 
     try {
-      // Example POST request
-      const response = await fetch("http://localhost:5000/api/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        credentials: "include", // for cookies / jwt if needed
-      });
+          const data = await signIn({userName, password})
 
-      const result = await response.json();
-      console.log("Server response:", result);
+          console.log("Server response:", data);
+          if(data){
+            navigate('/home');
+          }
     } catch (err) {
       console.error("Error during signin:", err);
     }
