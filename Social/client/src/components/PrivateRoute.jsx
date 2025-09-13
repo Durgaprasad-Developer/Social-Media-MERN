@@ -3,8 +3,8 @@ import{useSelector} from "react-redux";
 
 export default function PrivateRoute ({children}) {
 const user = useSelector(state=>state.user.userData);
-setTimeout(()=>{
+// setTimeout(()=>{
 if(!user) return <Navigate to="/signin" replace/>
-},500)
+// },500)
 return children
 }
