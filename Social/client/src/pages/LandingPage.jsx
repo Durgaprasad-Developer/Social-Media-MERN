@@ -35,8 +35,7 @@ export default function LandingPage() {
         </div>
         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
           <img
-            <img src="/assets/landingpage_demo.png" alt="Landing Demo" />
-            alt="Vibbly app preview"
+            src="/assets/landingpage_demo.png" alt="Landing Demo" 
             className="w-80 md:w-[400px]"
           />
         </div>
