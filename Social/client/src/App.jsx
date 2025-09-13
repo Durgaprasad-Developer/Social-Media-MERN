@@ -17,11 +17,11 @@ useCurrentUser()
 
   return (
    <Routes>
-    {/* <Route path='/' element={<LandingPage/>} /> */}
+    <Route path='/' element={<LandingPage/>} />
     <Route path='/signup' element={<Signup/>} />
     <Route path='/signin' element={<Signin/>} />
     <Route path='/forgot-password' element={<ForgotPassword/>} />
-    <Route path='/'element={<PrivateRoute><Home/></PrivateRoute>}/>
+    <Route path='/home'element={<PrivateRoute><Home/></PrivateRoute>}/>
    </Routes>
   )
 }
