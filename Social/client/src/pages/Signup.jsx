@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signUp } from "../../apiCalls/authCalls";
+import landingDemo from '../assets/landingpage_demo.png';
+
 
 export default function Signup() {
   const [name, setname] = useState("");
@@ -31,7 +33,7 @@ export default function Signup() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
       <div className="md:w-1/3 shadow-blue-600 md:mt-0 flex justify-center">
         <img
-          src="/src/assets/landingpage_demo.png"
+          src={landingDemo}
           alt="Vibbly app preview"
           className="w-80 md:w-[400px]"
         />

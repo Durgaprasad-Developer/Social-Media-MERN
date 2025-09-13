@@ -1,4 +1,6 @@
 import { Link } from "react-router";
+import landingDemo from '../assets/landingpage_demo.png';
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6">
@@ -35,7 +37,7 @@ export default function LandingPage() {
         </div>
         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
           <img
-            src="/src/assets/landingpage_demo.png"
+            src={landingDemo}
             alt="Vibbly app preview"
             className="w-80 md:w-[400px]"
           />
