@@ -15,12 +15,10 @@ export default function Signup() {
       e.preventDefault();
     const data = await signUp({name, userName, email, password});
    console.log("Server response:", data);
-   if(data){
-    localStorage.setItem("authToken", data.token);
+    // localStorage.setItem("authToken", data.token);
+    if(data){
     navigate('/home');
-   }else{
-    alert(data?.message || "Signup failed");
-   }
+    }
     } catch (err) {
   console.error("Error during sign up:", err);
   console.error("Server response:", err.response?.data); // <- this shows actual backend message

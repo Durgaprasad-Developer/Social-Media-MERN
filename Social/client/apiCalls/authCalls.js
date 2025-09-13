@@ -32,3 +32,12 @@ export const signIn = async({userName, password}) =>{
         console.log(err)
     }
 }
+
+export const getCurrentUser = async()=>{
+    try{
+        const response = await api.get(`/api/user/current`)
+        return response.data;
+    }catch(err){
+        throw err.response.data;
+    }
+}

@@ -1,26 +1,37 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signIn } from "../../apiCalls/authCalls";
+import { setUserData } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function Signin() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!userName || !password) {
+      alert("userName or password shouldnt be empty");
+      return;
+    }
 
     try {
-          const data = await signIn({userName, password})
+      const data = await signIn({ userName, password });
 
-          console.log("Server response:", data);
-          if(data){
-            navigate('/home');
-          }
+      console.log("Server response:", data);
+      if(data){
+      dispatch(setUserData(data))
+
+      navigate("/home");
+      }
+      setUserName("");
+      setPassword("")
     } catch (err) {
       console.error("Error during signin:", err);
+      alert("Sign in failed. Please try again")
     }
   };
 
@@ -35,7 +46,9 @@ export default function Signin() {
       </div>
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow">
         <h1 className="text-3xl font-bold pb-10 text-indigo-600">Vibbly</h1>
-        <h2 className="text-2xl font-bold text-center text-indigo-600">Sign In</h2>
+        <h2 className="text-2xl font-bold text-center text-indigo-600">
+          Sign In
+        </h2>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <input
@@ -61,7 +74,10 @@ export default function Signin() {
         </form>
 
         <div className="mt-4 flex justify-between text-sm">
-          <Link to="/forgot-password" className="text-indigo-600 hover:underline">
+          <Link
+            to="/forgot-password"
+            className="text-indigo-600 hover:underline"
+          >
             Forgot password?
           </Link>
           <Link to="/signup" className="text-indigo-600 hover:underline">
