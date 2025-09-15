@@ -1,26 +1,47 @@
 import React from "react";
-import logo2 from "../assets/logo2.png";
+import { useSelector } from "react-redux";
+import useCurrentUser from "../hook/useCurrentUser";
+
 
 function Navbar() {
+  useCurrentUser()
+  const user = useSelector(state=>state.user.user)
+  console.log(user)
+  
   return (
-    <div className="w-full bg-black border-b border-gray-800 px-4 py-3 flex justify-between items-center sticky top-0 z-50">
+    <div className="w-full h-[70px] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-6">
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <img src={logo2} alt="logo" className="w-8 h-8 rounded-md" />
-        <h1 className="text-white text-lg font-bold">Vibbly</h1>
+        <h1 className="text-xl font-semibold text-gray-800"></h1>
       </div>
 
-      {/* Desktop Nav */}
-      <div className="hidden md:flex gap-6 text-white font-medium">
-        <a href="/home" className="hover:text-indigo-400">Home</a>
-        <a href="/explore" className="hover:text-indigo-400">Explore</a>
-        <a href="/profile" className="hover:text-indigo-400">Profile</a>
+      {/* Search Bar */}
+      <div className="hidden md:flex items-center w-[40%] h-[40px] border border-gray-300 rounded-lg px-3 bg-gray-50 focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-300 transition">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="w-full bg-transparent outline-none text-sm text-gray-700 placeholder-gray-400"
+        />
       </div>
 
-      {/* Sign Out Placeholder */}
-      <button className="hidden md:block bg-indigo-600 px-4 py-1.5 rounded-lg text-white font-semibold hover:bg-indigo-500">
-        Sign Out
-      </button>
+      {/* Profile + Actions */}
+      <div className="flex items-center gap-5">
+        <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+          Home
+        </button>
+        <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+          Explore
+        </button>
+        <button className="text-sm font-medium text-gray-700 hover:text-gray-900">
+          Messages
+        </button>
+
+        <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+
+         <div className="text-sm font-medium text-gray-700 hover:text-gray-900">
+         {user.name}
+        </div>
+      </div>
     </div>
   );
 }

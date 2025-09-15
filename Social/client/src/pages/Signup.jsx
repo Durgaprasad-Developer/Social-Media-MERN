@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signUp } from "../../apiCalls/authCalls";
 import landingDemo from '../assets/landingpage_demo.png';
+import { setUserData } from "../redux/userSlice";
 
 
 export default function Signup() {
@@ -9,7 +10,6 @@ export default function Signup() {
   const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) =>{
@@ -17,8 +17,9 @@ export default function Signup() {
       e.preventDefault();
     const data = await signUp({name, userName, email, password});
    console.log("Server response:", data);
-    // localStorage.setItem("authToken", data.token);
+   
     if(data){
+      navigate(setUserData(data))
     navigate('/home');
     }
     } catch (err) {

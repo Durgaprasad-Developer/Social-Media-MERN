@@ -38,6 +38,6 @@ export const getCurrentUser = async()=>{
         const response = await api.get(`/api/user/current`)
         return response.data;
     }catch(err){
-        throw err.response.data;
+        throw err.response?.data || {message:"Inable to fetch the data"};
     }
 }
