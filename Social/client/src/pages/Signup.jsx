@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signUp } from "../../apiCalls/authCalls";
 import landingDemo from '../assets/landingpage_demo.png';
 import { setUserData } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 
 export default function Signup() {
@@ -11,6 +12,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) =>{
     try{
@@ -19,7 +21,7 @@ export default function Signup() {
    console.log("Server response:", data);
    
     if(data){
-      navigate(setUserData(data))
+      dispatch(setUserData(data))
     navigate('/home');
     }
     } catch (err) {
