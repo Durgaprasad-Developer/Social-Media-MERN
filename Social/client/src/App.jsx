@@ -6,22 +6,24 @@ import Signin from './pages/Signin'
 import ForgotPassword from './pages/ForgotPassword' 
 import Home from './pages/Home'
 import useCurrentUser from './hook/useCurrentUser'
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import PrivateRoute from './components/PrivateRoute'
+import { Navigate } from 'react-router-dom'
 
 function App() {
 useCurrentUser()
+const userData = useSelector(state => state.user);
 
 // const userData = useSelector(state=>state.user)
 
 
   return (
    <Routes>
-    <Route path='/' element={<LandingPage/>} />
-    <Route path='/signup' element={<Signup/>} />
-    <Route path='/signin' element={<Signin/>} />
-    <Route path='/forgot-password' element={<ForgotPassword/>} />
-    <Route path='/home'element={<PrivateRoute><Home/></PrivateRoute>}/>
+    <Route path='/' element={!userData?<LandingPage/>:<Navigate to="/home"/>} />
+    <Route path='/signup' element={!userData?<Signup/>:<Navigate to="/home"/>} />
+    <Route path='/signin' element={!userData?<Signin/>:<Navigate to="/home"/>} />
+    <Route path='/forgot-password' element={!userData?<ForgotPassword/>:<Navigate to="/home"/>} />
+    <Route path='/home'element={userData?<Home/>:<Navigate to="/signin"/>}/>
    </Routes>
   )
 }

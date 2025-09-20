@@ -7,6 +7,10 @@ function Navbar() {
   useCurrentUser()
   const user = useSelector(state=>state.user.user)
   console.log(user)
+
+  if(!user){
+    return null
+  }
   
   return (
     <div className="w-full h-[70px] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-6">
