@@ -15,7 +15,7 @@ useCurrentUser()
 const userData = useSelector(state => state.user);
 
 // const userData = useSelector(state=>state.user)
-
+console.log(userData)
 
   return (
    <Routes>
@@ -25,6 +25,7 @@ const userData = useSelector(state => state.user);
     <Route path='/forgot-password' element={!userData?<ForgotPassword/>:<Navigate to="/home"/>} />
     <Route path='/home'element={userData?<Home/>:<Navigate to="/signin"/>}/>
    </Routes>
+   
   )
 }
 
